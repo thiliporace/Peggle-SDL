@@ -12,6 +12,7 @@
 
 #include "SdlManager.hpp"
 #include "GameObject.hpp"
+#include "BallGameObject.hpp"
 
 //60 FPS
 //const float MS_PER_UPDATE = 0.016;
@@ -46,6 +47,10 @@ int main(){
     SdlManager* sdlManager = SdlManager::getInstance();
     
     SDL_Renderer* renderer = sdlManager->getRenderer();
+    
+    std::shared_ptr<BallGameObject> ball = std::make_shared<BallGameObject>(400, 400, 40, 40, "ball.png");
+    
+    gameObjectsInScene.push_back(ball);
         
     SDL_Event event;
     bool quit = false;

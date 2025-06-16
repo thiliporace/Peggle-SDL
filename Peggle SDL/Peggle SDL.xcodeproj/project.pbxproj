@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8FE71D9F2E008A9500BC96FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FE71D9E2E008A9500BC96FA /* Assets.xcassets */; };
 		8FE71DAD2E008B4D00BC96FA /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DAC2E008B4D00BC96FA /* SDL2.framework */; };
 		8FE71DAE2E008B4D00BC96FA /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DAC2E008B4D00BC96FA /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8FE71DB12E008B6500BC96FA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FE71DB02E008B6500BC96FA /* main.cpp */; };
@@ -15,6 +14,9 @@
 		8FE71DB72E008CB900BC96FA /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DB62E008CB900BC96FA /* SDL2_image.framework */; };
 		8FE71DB82E008CB900BC96FA /* SDL2_image.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DB62E008CB900BC96FA /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8FE71DBC2E008D2100BC96FA /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FE71DBA2E008D2100BC96FA /* GameObject.cpp */; };
+		8FE71DBF2E0096CF00BC96FA /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FE71DBE2E0096CF00BC96FA /* ball.png */; };
+		8FE71DC22E00973100BC96FA /* BallGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FE71DC02E00973100BC96FA /* BallGameObject.cpp */; };
+		8FE71DC52E00973B00BC96FA /* PeggleGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FE71DC32E00973B00BC96FA /* PeggleGameObject.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		8FE71D982E008A9400BC96FA /* Peggle SDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peggle SDL.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8FE71D9E2E008A9500BC96FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8FE71DA52E008A9500BC96FA /* Peggle_SDL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peggle_SDL.entitlements; sourceTree = "<group>"; };
 		8FE71DAC2E008B4D00BC96FA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		8FE71DB02E008B6500BC96FA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -43,6 +44,11 @@
 		8FE71DB62E008CB900BC96FA /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		8FE71DBA2E008D2100BC96FA /* GameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		8FE71DBB2E008D2100BC96FA /* GameObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
+		8FE71DBE2E0096CF00BC96FA /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ball.png; path = "../../../../../Downloads/PNG 2/Retina/ball.png"; sourceTree = "<group>"; };
+		8FE71DC02E00973100BC96FA /* BallGameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BallGameObject.cpp; sourceTree = "<group>"; };
+		8FE71DC12E00973100BC96FA /* BallGameObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BallGameObject.hpp; sourceTree = "<group>"; };
+		8FE71DC32E00973B00BC96FA /* PeggleGameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PeggleGameObject.cpp; sourceTree = "<group>"; };
+		8FE71DC42E00973B00BC96FA /* PeggleGameObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PeggleGameObject.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +67,7 @@
 		8FE71D8F2E008A9400BC96FA = {
 			isa = PBXGroup;
 			children = (
+				8FE71DBD2E0096A500BC96FA /* Assets */,
 				8FE71DB92E008D0100BC96FA /* Objects */,
 				8FE71DB22E008C7200BC96FA /* Singletons */,
 				8FE71D9A2E008A9400BC96FA /* Peggle SDL */,
@@ -80,7 +87,6 @@
 		8FE71D9A2E008A9400BC96FA /* Peggle SDL */ = {
 			isa = PBXGroup;
 			children = (
-				8FE71D9E2E008A9500BC96FA /* Assets.xcassets */,
 				8FE71DA52E008A9500BC96FA /* Peggle_SDL.entitlements */,
 				8FE71DB02E008B6500BC96FA /* main.cpp */,
 			);
@@ -110,8 +116,20 @@
 			children = (
 				8FE71DBA2E008D2100BC96FA /* GameObject.cpp */,
 				8FE71DBB2E008D2100BC96FA /* GameObject.hpp */,
+				8FE71DC02E00973100BC96FA /* BallGameObject.cpp */,
+				8FE71DC12E00973100BC96FA /* BallGameObject.hpp */,
+				8FE71DC32E00973B00BC96FA /* PeggleGameObject.cpp */,
+				8FE71DC42E00973B00BC96FA /* PeggleGameObject.hpp */,
 			);
 			path = Objects;
+			sourceTree = "<group>";
+		};
+		8FE71DBD2E0096A500BC96FA /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				8FE71DBE2E0096CF00BC96FA /* ball.png */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,7 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FE71D9F2E008A9500BC96FA /* Assets.xcassets in Resources */,
+				8FE71DBF2E0096CF00BC96FA /* ball.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +204,8 @@
 				8FE71DB12E008B6500BC96FA /* main.cpp in Sources */,
 				8FE71DB52E008C8F00BC96FA /* SdlManager.cpp in Sources */,
 				8FE71DBC2E008D2100BC96FA /* GameObject.cpp in Sources */,
+				8FE71DC22E00973100BC96FA /* BallGameObject.cpp in Sources */,
+				8FE71DC52E00973B00BC96FA /* PeggleGameObject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
