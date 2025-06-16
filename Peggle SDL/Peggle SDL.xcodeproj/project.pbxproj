@@ -1,0 +1,392 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8FE71D9F2E008A9500BC96FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FE71D9E2E008A9500BC96FA /* Assets.xcassets */; };
+		8FE71DAD2E008B4D00BC96FA /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DAC2E008B4D00BC96FA /* SDL2.framework */; };
+		8FE71DAE2E008B4D00BC96FA /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DAC2E008B4D00BC96FA /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8FE71DB12E008B6500BC96FA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FE71DB02E008B6500BC96FA /* main.cpp */; };
+		8FE71DB52E008C8F00BC96FA /* SdlManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FE71DB32E008C8F00BC96FA /* SdlManager.cpp */; };
+		8FE71DB72E008CB900BC96FA /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DB62E008CB900BC96FA /* SDL2_image.framework */; };
+		8FE71DB82E008CB900BC96FA /* SDL2_image.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DB62E008CB900BC96FA /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8FE71DBC2E008D2100BC96FA /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FE71DBA2E008D2100BC96FA /* GameObject.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8FE71DAF2E008B4D00BC96FA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8FE71DAE2E008B4D00BC96FA /* SDL2.framework in Embed Frameworks */,
+				8FE71DB82E008CB900BC96FA /* SDL2_image.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8FE71D982E008A9400BC96FA /* Peggle SDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peggle SDL.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FE71D9E2E008A9500BC96FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8FE71DA52E008A9500BC96FA /* Peggle_SDL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peggle_SDL.entitlements; sourceTree = "<group>"; };
+		8FE71DAC2E008B4D00BC96FA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
+		8FE71DB02E008B6500BC96FA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		8FE71DB32E008C8F00BC96FA /* SdlManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SdlManager.cpp; sourceTree = "<group>"; };
+		8FE71DB42E008C8F00BC96FA /* SdlManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SdlManager.hpp; sourceTree = "<group>"; };
+		8FE71DB62E008CB900BC96FA /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		8FE71DBA2E008D2100BC96FA /* GameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		8FE71DBB2E008D2100BC96FA /* GameObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8FE71D952E008A9400BC96FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE71DAD2E008B4D00BC96FA /* SDL2.framework in Frameworks */,
+				8FE71DB72E008CB900BC96FA /* SDL2_image.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8FE71D8F2E008A9400BC96FA = {
+			isa = PBXGroup;
+			children = (
+				8FE71DB92E008D0100BC96FA /* Objects */,
+				8FE71DB22E008C7200BC96FA /* Singletons */,
+				8FE71D9A2E008A9400BC96FA /* Peggle SDL */,
+				8FE71D992E008A9400BC96FA /* Products */,
+				8FE71DAB2E008B4D00BC96FA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8FE71D992E008A9400BC96FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8FE71D982E008A9400BC96FA /* Peggle SDL.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8FE71D9A2E008A9400BC96FA /* Peggle SDL */ = {
+			isa = PBXGroup;
+			children = (
+				8FE71D9E2E008A9500BC96FA /* Assets.xcassets */,
+				8FE71DA52E008A9500BC96FA /* Peggle_SDL.entitlements */,
+				8FE71DB02E008B6500BC96FA /* main.cpp */,
+			);
+			path = "Peggle SDL";
+			sourceTree = "<group>";
+		};
+		8FE71DAB2E008B4D00BC96FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8FE71DB62E008CB900BC96FA /* SDL2_image.framework */,
+				8FE71DAC2E008B4D00BC96FA /* SDL2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8FE71DB22E008C7200BC96FA /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				8FE71DB32E008C8F00BC96FA /* SdlManager.cpp */,
+				8FE71DB42E008C8F00BC96FA /* SdlManager.hpp */,
+			);
+			path = Singletons;
+			sourceTree = "<group>";
+		};
+		8FE71DB92E008D0100BC96FA /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				8FE71DBA2E008D2100BC96FA /* GameObject.cpp */,
+				8FE71DBB2E008D2100BC96FA /* GameObject.hpp */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8FE71D972E008A9400BC96FA /* Peggle SDL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FE71DA82E008A9500BC96FA /* Build configuration list for PBXNativeTarget "Peggle SDL" */;
+			buildPhases = (
+				8FE71D942E008A9400BC96FA /* Sources */,
+				8FE71D952E008A9400BC96FA /* Frameworks */,
+				8FE71D962E008A9400BC96FA /* Resources */,
+				8FE71DAF2E008B4D00BC96FA /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Peggle SDL";
+			productName = "Peggle SDL";
+			productReference = 8FE71D982E008A9400BC96FA /* Peggle SDL.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8FE71D902E008A9400BC96FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					8FE71D972E008A9400BC96FA = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 8FE71D932E008A9400BC96FA /* Build configuration list for PBXProject "Peggle SDL" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8FE71D8F2E008A9400BC96FA;
+			productRefGroup = 8FE71D992E008A9400BC96FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8FE71D972E008A9400BC96FA /* Peggle SDL */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8FE71D962E008A9400BC96FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE71D9F2E008A9500BC96FA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8FE71D942E008A9400BC96FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE71DB12E008B6500BC96FA /* main.cpp in Sources */,
+				8FE71DB52E008C8F00BC96FA /* SdlManager.cpp in Sources */,
+				8FE71DBC2E008D2100BC96FA /* GameObject.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8FE71DA62E008A9500BC96FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8FE71DA72E008A9500BC96FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8FE71DA92E008A9500BC96FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Peggle SDL/Peggle_SDL.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "taiago.Peggle-SDL";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		8FE71DAA2E008A9500BC96FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Peggle SDL/Peggle_SDL.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "taiago.Peggle-SDL";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8FE71D932E008A9400BC96FA /* Build configuration list for PBXProject "Peggle SDL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FE71DA62E008A9500BC96FA /* Debug */,
+				8FE71DA72E008A9500BC96FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FE71DA82E008A9500BC96FA /* Build configuration list for PBXNativeTarget "Peggle SDL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FE71DA92E008A9500BC96FA /* Debug */,
+				8FE71DAA2E008A9500BC96FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8FE71D902E008A9400BC96FA /* Project object */;
+}
