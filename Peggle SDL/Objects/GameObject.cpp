@@ -15,9 +15,9 @@
 
 using namespace std;
 
-GameObject::GameObject(int initialXPos, int initialYPos, int objectWidth, int objectHeight, const std::string& assetName, double rotation) : isAlive(true), rotation(rotation) {
+GameObject::GameObject(float initialX, float initialY, float radius, const std::string& assetName, double rotation) : isAlive(true), rotation(rotation) {
     SdlManager* sdlManager = SdlManager::getInstance();
-    
+        
     spriteTexture = nullptr;
     
     sprite = IMG_Load(assetName.c_str());
@@ -35,20 +35,39 @@ GameObject::GameObject(int initialXPos, int initialYPos, int objectWidth, int ob
     }
     
     SDL_FreeSurface(sprite);
+
+    collider.x = initialX;
+    collider.y = initialY;
+    collider.radius = radius;
     
-    int wPosition = static_cast<int>(position.w);
-    int hPosition = static_cast<int>(position.h);
-    
-    SDL_QueryTexture(spriteTexture, NULL, NULL, &wPosition, &hPosition); //Conecta textura com posicao
-    
-    position.x = initialXPos;
-    position.y = initialYPos;
-    
-    width = objectWidth;
-    height = objectHeight;
-    
-    position.w = width;
-    position.h = height;
+    renderRect.w = radius * 2;
+    renderRect.h = radius * 2;
+    renderRect.x = initialX - radius;
+    renderRect.y = initialY - radius;
+}
+
+void GameObject::changeAsset(const std::string& assetName) {
+    SdlManager* sdlManager = SdlManager::getInstance();
+
+    SDL_Surface* newSprite = IMG_Load(assetName.c_str());
+
+    if (!newSprite) {
+        cout << "Error Surface: " << SDL_GetError() << endl;
+        return;
+    }
+
+    if (spriteTexture) {
+        SDL_DestroyTexture(spriteTexture);
+    }
+
+    spriteTexture = SDL_CreateTextureFromSurface(sdlManager->getRenderer(), newSprite);
+
+    if (!spriteTexture) {
+        cout << "Error Texture: " << SDL_GetError() << endl;
+        return;
+    }
+
+    SDL_FreeSurface(newSprite);
 }
 
 GameObject::~GameObject(){

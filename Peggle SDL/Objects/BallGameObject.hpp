@@ -13,9 +13,14 @@
 
 class BallGameObject: public GameObject{
 public:
-    BallGameObject(int initialXPos, int initialYPos, int objectWidth, int objectHeight, const std::string& assetName, double rotation = 0);
+    float velX = 0;
+    float velY = 0;
+    
+    BallGameObject(float initialX, float initialY, float radius, const std::string& assetName, double rotation = 0);
     
     void update(float deltaTime) override;
+    
+    void rebound(const CircleCollider& otherCollider);
 };
 
 #endif /* BallGameObject_hpp */

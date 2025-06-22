@@ -13,6 +13,10 @@
 #include <list>
 #include <SDL2/SDL.h>
 
+struct CircleCollider {
+    float x, y, radius;
+};
+
 class GameObject {
 private:
     SDL_Surface* sprite;
@@ -25,11 +29,15 @@ protected:
     bool isAlive;
 
 public:
-    SDL_FRect position;
+    CircleCollider collider;
+    
+    SDL_FRect renderRect;
     
     double rotation;
     
-    GameObject(int initialXPos, int initialYPos, int objectWidth, int objectHeight, const std::string& assetName, double rotation = 0);
+    GameObject(float initialX, float initialY, float radius, const std::string& assetName, double rotation = 0);
+    
+    void changeAsset(const std::string& assetName);
     
     virtual void update(float deltaTime) = 0;
     

@@ -27,7 +27,7 @@ const void SdlManager::initializeSDL(){
 }
 
 const void SdlManager::initializeSDLWindow(){
-    window = SDL_CreateWindow("Asteroids", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("Peggle.", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
     
     if (!window){
         cout << "Error Window: " << SDL_GetError() << endl;
