@@ -13,9 +13,7 @@
 #include <list>
 #include <SDL2/SDL.h>
 
-struct CircleCollider {
-    float x, y, radius;
-};
+#include "CircleCollider.h"
 
 class GameObject {
 private:

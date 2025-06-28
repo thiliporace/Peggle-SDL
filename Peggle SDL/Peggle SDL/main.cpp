@@ -51,38 +51,22 @@ int main(){
     
     SDL_Renderer* renderer = sdlManager->getRenderer();
     
+    CollisionDetection collisionDetection = CollisionDetection();
+    
     std::shared_ptr<BallGameObject> ball = std::make_shared<BallGameObject>(410, 100, 10, "ball.png");
-    
-    std::shared_ptr<PeggleGameObject> peggle1 = std::make_shared<PeggleGameObject>(BASIC, *ball, 100, 300, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle2 = std::make_shared<PeggleGameObject>(BASIC, *ball, 200, 300, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle3 = std::make_shared<PeggleGameObject>(BASIC, *ball, 300, 300, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle4 = std::make_shared<PeggleGameObject>(BASIC, *ball, 400, 300, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle5 = std::make_shared<PeggleGameObject>(BASIC, *ball, 500, 300, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle6 = std::make_shared<PeggleGameObject>(BASIC, *ball, 600, 300, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle7 = std::make_shared<PeggleGameObject>(BASIC, *ball, 700, 300, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle8 = std::make_shared<PeggleGameObject>(BASIC, *ball, 100, 500, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle9 = std::make_shared<PeggleGameObject>(BASIC, *ball, 200, 500, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle10 = std::make_shared<PeggleGameObject>(BASIC, *ball, 300, 500, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle11 = std::make_shared<PeggleGameObject>(BASIC, *ball, 400, 500, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle12 = std::make_shared<PeggleGameObject>(BASIC, *ball, 500, 500, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle13 = std::make_shared<PeggleGameObject>(BASIC, *ball, 600, 500, 10, "whitePin.png");
-    std::shared_ptr<PeggleGameObject> peggle14 = std::make_shared<PeggleGameObject>(BASIC, *ball, 700, 500, 10, "whitePin.png");
-    
     gameObjectsInScene.push_back(ball);
-    gameObjectsInScene.push_back(peggle1);
-    gameObjectsInScene.push_back(peggle2);
-    gameObjectsInScene.push_back(peggle3);
-    gameObjectsInScene.push_back(peggle4);
-    gameObjectsInScene.push_back(peggle5);
-    gameObjectsInScene.push_back(peggle6);
-    gameObjectsInScene.push_back(peggle7);
-    gameObjectsInScene.push_back(peggle8);
-    gameObjectsInScene.push_back(peggle9);
-    gameObjectsInScene.push_back(peggle10);
-    gameObjectsInScene.push_back(peggle11);
-    gameObjectsInScene.push_back(peggle12);
-    gameObjectsInScene.push_back(peggle13);
-    gameObjectsInScene.push_back(peggle14);
+
+    int y_coords[] = {300, 500};
+
+    for (int y : y_coords) {
+        for (int x = 100; x <= 700; x += 100) {
+            std::shared_ptr<PeggleGameObject> peggle = std::make_shared<PeggleGameObject>(BASIC, *ball, x, y, 10, "whitePin.png");
+            peggle->AddDelegate([&collisionDetection](const CircleCollider& colliderA, const CircleCollider& colliderB){
+                return collisionDetection.checkCircleCollision(colliderA, colliderB);
+            });
+            gameObjectsInScene.push_back(peggle);
+        }
+    }
         
     SDL_Event event;
     bool quit = false;

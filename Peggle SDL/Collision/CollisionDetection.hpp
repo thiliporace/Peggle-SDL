@@ -11,9 +11,13 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
+#include "CircleCollider.h"
+
 class CollisionDetection{
 public:
-    bool checkCollision(SDL_FRect rectA, SDL_FRect rectB);
+    bool checkCollision(const SDL_FRect rectA, const SDL_FRect rectB);
+    
+    bool checkCircleCollision(const CircleCollider& a, const CircleCollider& b);
 };
 
 #endif /* CollisionDetection_hpp */

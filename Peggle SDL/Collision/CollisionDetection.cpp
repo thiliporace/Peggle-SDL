@@ -7,7 +7,7 @@
 
 #include "CollisionDetection.hpp"
 
-bool CollisionDetection::checkCollision(SDL_FRect rectA, SDL_FRect rectB){
+bool CollisionDetection::checkCollision(const SDL_FRect rectA, const SDL_FRect rectB){
     int topA,topB,bottomA,bottomB,rightA,rightB,leftA,leftB;
     
     leftA = rectA.x;
@@ -29,4 +29,17 @@ bool CollisionDetection::checkCollision(SDL_FRect rectA, SDL_FRect rectB){
     if(leftA >= rightB) return false;
     
     return true;
+}
+
+bool CollisionDetection::checkCircleCollision(const CircleCollider& a, const CircleCollider& b){
+    float distanceX = a.x - b.x;
+    float distanceY = a.y - b.y;
+
+    float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+
+    float radiiSum = a.radius + b.radius;
+    
+    float radiiSumSquared = radiiSum * radiiSum;
+
+    return distanceSquared <= radiiSumSquared;
 }

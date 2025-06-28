@@ -7,19 +7,10 @@
 
 #include "PeggleGameObject.hpp"
 
-PeggleGameObject::PeggleGameObject(PeggleType type, BallGameObject& ballGameObject, float initialX, float initialY, float radius, const std::string& assetName, double rotation): GameObject(initialX, initialY, radius, assetName, rotation), peggleType(type), ballGameObject(ballGameObject){
-    collisionDetection = CollisionDetection();
-}
+PeggleGameObject::PeggleGameObject(PeggleType type, BallGameObject& ballGameObject, float initialX, float initialY, float radius, const std::string& assetName, double rotation): GameObject(initialX, initialY, radius, assetName, rotation), peggleType(type), ballGameObject(ballGameObject){}
 
 void PeggleGameObject::update(float deltaTime){
-    float distanceX = ballGameObject.collider.x - this->collider.x;
-    float distanceY = ballGameObject.collider.y - this->collider.y;
-    float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
-
-    float radiiSum = ballGameObject.collider.radius + this->collider.radius;
-    float radiiSumSquared = radiiSum * radiiSum;
-
-    if (distanceSquared <= radiiSumSquared) {
+    if (delegate && delegate(ballGameObject.collider, this->collider)) {
         ballGameObject.rebound(this->collider);
         
         if (peggleType == INACTIVE) return;
@@ -34,4 +25,9 @@ void PeggleGameObject::update(float deltaTime){
 void PeggleGameObject::changePeggleType(const PeggleType& newType, const std::string& newAssetName){
     peggleType = newType;
     changeAsset(newAssetName);
+}
+
+void PeggleGameObject::AddDelegate(OnCollisionDetectionDelegate handler){
+    if (delegate != nullptr) return;
+    delegate = handler;
 }

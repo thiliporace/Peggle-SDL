@@ -45,7 +45,7 @@ void BallGameObject::rebound(const CircleCollider& otherCollider){
     float normalX = collider.x - otherCollider.x;
     float normalY = collider.y - otherCollider.y;
     
-    //Pega o comprimento do vetor e depois normaliza ele
+    //Pega a magnitude do vetor e depois normaliza ele
     float length = std::sqrt(normalX * normalX + normalY * normalY);
     if (length == 0.0f) {
         length = 1.0f; 

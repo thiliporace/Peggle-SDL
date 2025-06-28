@@ -42,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F0F448A2E109BD5006D2FE8 /* CircleCollider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleCollider.h; sourceTree = "<group>"; };
 		8F2E68392E087ACA00FD3BBB /* grayPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grayPin.png; path = "../../../../../Downloads/Untitled (3)/grayPin.png"; sourceTree = "<group>"; };
 		8F2E683A2E087ACA00FD3BBB /* greenPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenPin.png; path = "../../../../../Downloads/Untitled (3)/greenPin.png"; sourceTree = "<group>"; };
 		8F2E683B2E087ACA00FD3BBB /* redPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redPin.png; path = "../../../../../Downloads/Untitled (3)/redPin.png"; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 			children = (
 				8F2E68482E0881A800FD3BBB /* CollisionDetection.cpp */,
 				8F2E68492E0881A800FD3BBB /* CollisionDetection.hpp */,
+				8F0F448A2E109BD5006D2FE8 /* CircleCollider.h */,
 			);
 			path = Collision;
 			sourceTree = "<group>";
