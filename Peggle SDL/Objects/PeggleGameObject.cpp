@@ -15,6 +15,10 @@ void PeggleGameObject::update(float deltaTime){
         
         if (peggleType == INACTIVE) return;
         
+        if (scoringDelegate) {
+            scoringDelegate();
+        }
+        
         changePeggleType(INACTIVE, "grayPin.png");
     }
 
@@ -30,4 +34,8 @@ void PeggleGameObject::changePeggleType(const PeggleType& newType, const std::st
 void PeggleGameObject::AddDelegate(OnCollisionDetectionDelegate handler){
     if (delegate != nullptr) return;
     delegate = handler;
+}
+
+void PeggleGameObject::setScoringDelegate(OnHitScoringDelegate handler) {
+    scoringDelegate = handler;
 }

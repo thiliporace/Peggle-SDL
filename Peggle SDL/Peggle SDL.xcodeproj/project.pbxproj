@@ -14,6 +14,10 @@
 		8F2E68432E087ACA00FD3BBB /* whitePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F2E683D2E087ACA00FD3BBB /* whitePin.png */; };
 		8F2E68442E087ACA00FD3BBB /* yellowPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F2E683E2E087ACA00FD3BBB /* yellowPin.png */; };
 		8F2E684A2E0881A800FD3BBB /* CollisionDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F2E68482E0881A800FD3BBB /* CollisionDetection.cpp */; };
+		8FA3A8DD2E11D57600A2B5EA /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FA3A8DB2E11D57600A2B5EA /* Label.cpp */; };
+		8FA3A8DF2E11DD1400A2B5EA /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */; };
+		8FA3A8E02E11DD1400A2B5EA /* SDL2_ttf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8FA3A8E42E11DF2B00A2B5EA /* NewYork.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FA3A8E32E11DF1D00A2B5EA /* NewYork.ttf */; };
 		8FE71DAD2E008B4D00BC96FA /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DAC2E008B4D00BC96FA /* SDL2.framework */; };
 		8FE71DAE2E008B4D00BC96FA /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DAC2E008B4D00BC96FA /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8FE71DB12E008B6500BC96FA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FE71DB02E008B6500BC96FA /* main.cpp */; };
@@ -34,6 +38,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				8FE71DAE2E008B4D00BC96FA /* SDL2.framework in Embed Frameworks */,
+				8FA3A8E02E11DD1400A2B5EA /* SDL2_ttf.framework in Embed Frameworks */,
 				8FE71DB82E008CB900BC96FA /* SDL2_image.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -52,6 +57,11 @@
 		8F2E68462E087DA300FD3BBB /* PeggleType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeggleType.h; sourceTree = "<group>"; };
 		8F2E68482E0881A800FD3BBB /* CollisionDetection.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionDetection.cpp; sourceTree = "<group>"; };
 		8F2E68492E0881A800FD3BBB /* CollisionDetection.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CollisionDetection.hpp; sourceTree = "<group>"; };
+		8FA3A8D92E11CC0B00A2B5EA /* BallState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BallState.h; sourceTree = "<group>"; };
+		8FA3A8DB2E11D57600A2B5EA /* Label.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Label.cpp; sourceTree = "<group>"; };
+		8FA3A8DC2E11D57600A2B5EA /* Label.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Label.hpp; sourceTree = "<group>"; };
+		8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
+		8FA3A8E32E11DF1D00A2B5EA /* NewYork.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewYork.ttf; sourceTree = "<group>"; };
 		8FE71D982E008A9400BC96FA /* Peggle SDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peggle SDL.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE71DA52E008A9500BC96FA /* Peggle_SDL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peggle_SDL.entitlements; sourceTree = "<group>"; };
 		8FE71DAC2E008B4D00BC96FA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
@@ -74,6 +84,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FE71DAD2E008B4D00BC96FA /* SDL2.framework in Frameworks */,
+				8FA3A8DF2E11DD1400A2B5EA /* SDL2_ttf.framework in Frameworks */,
 				8FE71DB72E008CB900BC96FA /* SDL2_image.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				8F2E68462E087DA300FD3BBB /* PeggleType.h */,
+				8FA3A8D92E11CC0B00A2B5EA /* BallState.h */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -99,9 +111,19 @@
 			path = Collision;
 			sourceTree = "<group>";
 		};
+		8FA3A8DA2E11D56C00A2B5EA /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				8FA3A8DB2E11D57600A2B5EA /* Label.cpp */,
+				8FA3A8DC2E11D57600A2B5EA /* Label.hpp */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
 		8FE71D8F2E008A9400BC96FA = {
 			isa = PBXGroup;
 			children = (
+				8FA3A8DA2E11D56C00A2B5EA /* Label */,
 				8F2E68472E08819800FD3BBB /* Collision */,
 				8F2E68452E087D4200FD3BBB /* Enums */,
 				8FE71DBD2E0096A500BC96FA /* Assets */,
@@ -133,6 +155,7 @@
 		8FE71DAB2E008B4D00BC96FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */,
 				8FE71DB62E008CB900BC96FA /* SDL2_image.framework */,
 				8FE71DAC2E008B4D00BC96FA /* SDL2.framework */,
 			);
@@ -164,6 +187,7 @@
 		8FE71DBD2E0096A500BC96FA /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				8FA3A8E32E11DF1D00A2B5EA /* NewYork.ttf */,
 				8FE71DBE2E0096CF00BC96FA /* ball.png */,
 				8F2E683C2E087ACA00FD3BBB /* bluePin.png */,
 				8F2E68392E087ACA00FD3BBB /* grayPin.png */,
@@ -233,6 +257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FA3A8E42E11DF2B00A2B5EA /* NewYork.ttf in Resources */,
 				8F2E68442E087ACA00FD3BBB /* yellowPin.png in Resources */,
 				8F2E68402E087ACA00FD3BBB /* greenPin.png in Resources */,
 				8F2E683F2E087ACA00FD3BBB /* grayPin.png in Resources */,
@@ -256,6 +281,7 @@
 				8FE71DBC2E008D2100BC96FA /* GameObject.cpp in Sources */,
 				8FE71DC22E00973100BC96FA /* BallGameObject.cpp in Sources */,
 				8FE71DC52E00973B00BC96FA /* PeggleGameObject.cpp in Sources */,
+				8FA3A8DD2E11D57600A2B5EA /* Label.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

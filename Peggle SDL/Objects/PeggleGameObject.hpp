@@ -18,12 +18,16 @@
 //Delegate pra funçao do Collision Detection
 using OnCollisionDetectionDelegate = std::function<bool(const CircleCollider& colliderA, const CircleCollider& colliderB)>;
 
+using OnHitScoringDelegate = std::function<void()>;
+
 class PeggleGameObject: public GameObject{
 private:
     PeggleType peggleType;
     BallGameObject& ballGameObject;
     
     OnCollisionDetectionDelegate delegate;
+    
+    OnHitScoringDelegate scoringDelegate;
 public:
     PeggleGameObject(PeggleType type, BallGameObject& ballGameObject, float initialX, float initialY, float radius, const std::string& assetName, double rotation = 0);
     
@@ -32,6 +36,8 @@ public:
     void changePeggleType(const PeggleType& newType, const std::string& newAssetName);
     
     void AddDelegate(OnCollisionDetectionDelegate handler);
+    
+    void setScoringDelegate(OnHitScoringDelegate handler);
 };
 
 #endif /* PeggleGameObject_hpp */
