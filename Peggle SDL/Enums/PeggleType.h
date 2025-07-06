@@ -11,6 +11,7 @@
 enum PeggleType{
     BASIC,
     BONUS,
+    SPAWNBALL,
     INACTIVE
 };
 

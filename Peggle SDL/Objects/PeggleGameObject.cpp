@@ -7,23 +7,42 @@
 
 #include "PeggleGameObject.hpp"
 
-PeggleGameObject::PeggleGameObject(PeggleType type, BallGameObject& ballGameObject, float initialX, float initialY, float radius, const std::string& assetName, double rotation): GameObject(initialX, initialY, radius, assetName, rotation), peggleType(type), ballGameObject(ballGameObject){}
+PeggleGameObject::PeggleGameObject(PeggleType type, std::list<std::shared_ptr<GameObject>>& gameObjects, float initialX, float initialY, float radius, const std::string& assetName, double rotation): GameObject(initialX, initialY, radius, assetName, rotation), peggleType(type), gameObjectsInScene(gameObjects){
+    changePeggleType(type, type == BASIC ? "whitePin.png" : type == BONUS ? "yellowPin.png" : "bluePin.png");
+}
 
 void PeggleGameObject::update(float deltaTime){
-    if (delegate && delegate(ballGameObject.collider, this->collider)) {
-        ballGameObject.rebound(this->collider);
-        
-        if (peggleType == INACTIVE) return;
-        
-        if (scoringDelegate) {
-            scoringDelegate();
-        }
-        
-        changePeggleType(INACTIVE, "grayPin.png");
-    }
+    if (!isAlive) return;
+    
+    for (auto& gameObject : gameObjectsInScene) {
+        BallGameObject* ball = dynamic_cast<BallGameObject*>(gameObject.get());
 
-    renderRect.x = collider.x - collider.radius;
-    renderRect.y = collider.y - collider.radius;
+        if (ball && ball->getState() != AIMING) {
+            if (collisionDetectionDelegate && collisionDetectionDelegate(this->collider, ball->collider)) {
+                setIsAlive(false);
+                
+                switch (peggleType){
+                    case BASIC:
+                        if (!scoringDelegate) break;
+                        scoringDelegate();
+                        break;
+                    case BONUS:
+                        scoringDelegate();
+                        multiplyDelegate();
+                        break;
+                    case SPAWNBALL:
+                        spawnBallDelegate();
+                        break;
+                    default:
+                        break;
+                }
+
+                ball->rebound(this->collider);
+
+                break;
+            }
+        }
+    }
 }
 
 void PeggleGameObject::changePeggleType(const PeggleType& newType, const std::string& newAssetName){
@@ -32,10 +51,21 @@ void PeggleGameObject::changePeggleType(const PeggleType& newType, const std::st
 }
 
 void PeggleGameObject::AddDelegate(OnCollisionDetectionDelegate handler){
-    if (delegate != nullptr) return;
-    delegate = handler;
+    if (collisionDetectionDelegate != nullptr) return;
+    collisionDetectionDelegate = handler;
 }
 
 void PeggleGameObject::setScoringDelegate(OnHitScoringDelegate handler) {
+    if (scoringDelegate != nullptr) return;
     scoringDelegate = handler;
+}
+
+void PeggleGameObject::setMultiplyScoreDelegate(OnHitMultiplyScoreDelegate handler) {
+    if (multiplyDelegate != nullptr) return;
+    multiplyDelegate = handler;
+}
+
+void PeggleGameObject::setSpawnBallDelegate(OnHitSpawnBallDelegate handler) {
+    if (spawnBallDelegate != nullptr) return;
+    spawnBallDelegate = handler;
 }

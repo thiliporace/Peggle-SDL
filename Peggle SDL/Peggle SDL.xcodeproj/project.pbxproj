@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F2E683F2E087ACA00FD3BBB /* grayPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F2E68392E087ACA00FD3BBB /* grayPin.png */; };
 		8F2E68402E087ACA00FD3BBB /* greenPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F2E683A2E087ACA00FD3BBB /* greenPin.png */; };
 		8F2E68412E087ACA00FD3BBB /* redPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F2E683B2E087ACA00FD3BBB /* redPin.png */; };
 		8F2E68422E087ACA00FD3BBB /* bluePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F2E683C2E087ACA00FD3BBB /* bluePin.png */; };
@@ -48,7 +47,6 @@
 
 /* Begin PBXFileReference section */
 		8F0F448A2E109BD5006D2FE8 /* CircleCollider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleCollider.h; sourceTree = "<group>"; };
-		8F2E68392E087ACA00FD3BBB /* grayPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grayPin.png; path = "../../../../../Downloads/Untitled (3)/grayPin.png"; sourceTree = "<group>"; };
 		8F2E683A2E087ACA00FD3BBB /* greenPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenPin.png; path = "../../../../../Downloads/Untitled (3)/greenPin.png"; sourceTree = "<group>"; };
 		8F2E683B2E087ACA00FD3BBB /* redPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redPin.png; path = "../../../../../Downloads/Untitled (3)/redPin.png"; sourceTree = "<group>"; };
 		8F2E683C2E087ACA00FD3BBB /* bluePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluePin.png; path = "../../../../../Downloads/Untitled (3)/bluePin.png"; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 				8FA3A8E32E11DF1D00A2B5EA /* NewYork.ttf */,
 				8FE71DBE2E0096CF00BC96FA /* ball.png */,
 				8F2E683C2E087ACA00FD3BBB /* bluePin.png */,
-				8F2E68392E087ACA00FD3BBB /* grayPin.png */,
 				8F2E683A2E087ACA00FD3BBB /* greenPin.png */,
 				8F2E683B2E087ACA00FD3BBB /* redPin.png */,
 				8F2E683D2E087ACA00FD3BBB /* whitePin.png */,
@@ -260,7 +257,6 @@
 				8FA3A8E42E11DF2B00A2B5EA /* NewYork.ttf in Resources */,
 				8F2E68442E087ACA00FD3BBB /* yellowPin.png in Resources */,
 				8F2E68402E087ACA00FD3BBB /* greenPin.png in Resources */,
-				8F2E683F2E087ACA00FD3BBB /* grayPin.png in Resources */,
 				8FE71DBF2E0096CF00BC96FA /* ball.png in Resources */,
 				8F2E68412E087ACA00FD3BBB /* redPin.png in Resources */,
 				8F2E68422E087ACA00FD3BBB /* bluePin.png in Resources */,

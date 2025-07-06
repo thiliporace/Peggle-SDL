@@ -44,7 +44,7 @@ void update(float deltaTime){
     }
     
     if (ball->didFall()) {
-        lives--;
+        if (!isGameOver) lives--;
         livesLabel->setValue(lives);
         
         if (lives > 0) {
@@ -94,22 +94,47 @@ int main(){
     
     ball = std::make_shared<BallGameObject>(400, 50, 10, "ball.png");
     
-    livesLabel = std::make_shared<Label>(10, 10, lives, "Vidas: ");
-    scoreLabel = std::make_shared<Label>(650, 10, score, "Pontos: ");
+    livesLabel = std::make_shared<Label>(10, 10, lives, "Lives: ");
+    scoreLabel = std::make_shared<Label>(650, 10, score, "Points: ");
     
     gameObjectsInScene.push_back(ball);
 
-    int y_coords[] = {300, 500};
+    const int centerX = 400;
+    const int startY = 200;
+    const int horizontalSpacing = 60;
+    const int verticalSpacing = 50;
 
-    for (int y : y_coords) {
-        for (int x = 100; x <= 700; x += 100) {
-            std::shared_ptr<PeggleGameObject> peggle = std::make_shared<PeggleGameObject>(BASIC, *ball, x, y, 10, "whitePin.png");
+    int pegsPerRow[] = {1, 3, 5, 7, 7, 5, 3, 1};
+    int numRows = sizeof(pegsPerRow) / sizeof(pegsPerRow[0]);
+
+    for (int i = 0; i < numRows; ++i) {
+        int numPegs = pegsPerRow[i];
+        float rowWidth = (numPegs - 1) * horizontalSpacing;
+        float startX = centerX - (rowWidth / 2.0f);
+        int y = startY + i * verticalSpacing;
+
+        for (int j = 0; j < numPegs; ++j) {
+            int x = startX + j * horizontalSpacing;
+
+            std::shared_ptr<PeggleGameObject> peggle = std::make_shared<PeggleGameObject>(rand() % 3 == 0 ? BONUS : rand() % 3 == 0 ? SPAWNBALL : BASIC, gameObjectsInScene, x, y, 10, "whitePin.png");
+//            std::shared_ptr<PeggleGameObject> peggle = std::make_shared<PeggleGameObject>(SPAWNBALL, gameObjectsInScene, x, y, 10, "whitePin.png");
+            
             peggle->AddDelegate([&collisionDetection](const CircleCollider& colliderA, const CircleCollider& colliderB){
                 return collisionDetection.checkCircleCollision(colliderA, colliderB);
             });
             peggle->setScoringDelegate([&]() {
                 score += 20;
                 scoreLabel->setValue(score);
+            });
+            peggle->setMultiplyScoreDelegate([&]() {
+                score *= 1.2;
+                scoreLabel->setValue(score);
+            });
+            peggle->setSpawnBallDelegate([&]() {
+                std::shared_ptr<BallGameObject> newBall = std::make_shared<BallGameObject>(400, 50, 10, "ball.png");
+                gameObjectsInScene.push_back(newBall);
+                newBall->setAimDirection(rand() % 800, rand() % 800);
+                newBall->launch();
             });
             gameObjectsInScene.push_back(peggle);
         }
@@ -123,12 +148,10 @@ int main(){
     double lag = 0.0;
     double fpsCounter = 0.0;
     
-    int frames = 0;
+    int renderFrames = 0;
+    int updateFrames = 0;
     
     while (!quit){
-        
-        if(isGameOver) quit = true;
-           
        double current = getCurrentTime();
        double elapsed = current - previous;
        previous = current;
@@ -157,18 +180,22 @@ int main(){
        
        //Usando o Game Programming Pattern Update pra manter uma taxa de frames fixa, com um time step fixo e uma renderização variável (como não passamos lag residual pra renderização, em máquinas mais lentas a renderização pode ocorrer menos frequentemente que o update, causando artefatos visuais. Como essa máquina é meio goat 🐐 (bode 🐐) a renderização sempre roda mais rápido (uns 1000fps enquanto o update roda a uma taxa fixa))
        while (lag >= MS_PER_UPDATE){
-           frames++;
+           updateFrames++;
            update(MS_PER_UPDATE);
            lag -= MS_PER_UPDATE;
        }
        
-       if (fpsCounter >= 1.0f){
-           fpsCounter = 0;
-           std::cout << "FPS: " << frames << std::endl;
-           frames = 0;
-       }
+        if (fpsCounter >= 1.0f){
+            std::cout << "UPDATE FPS: " << updateFrames << std::endl;
+            std::cout << "RENDER FPS: " << renderFrames << std::endl;
+            
+            updateFrames = 0;
+            renderFrames = 0;
+            fpsCounter -= 1.0f;
+        }
        
        render(renderer,ball);
+        renderFrames++;
    }
     
     return 0;
