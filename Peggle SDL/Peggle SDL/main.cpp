@@ -1,10 +1,3 @@
-//
-//  main.cpp
-//  Peggle SDL
-//
-//  Created by Thiago Liporace on 16/06/25.
-//
-
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <iostream>
@@ -15,6 +8,10 @@
 #include "BallGameObject.hpp"
 #include "PeggleGameObject.hpp"
 #include "Label.hpp"
+#include "CollisionDetection.hpp"
+#include "ScoringComponent.hpp"
+#include "MultiplierComponent.hpp"
+#include "SpawnBallComponent.hpp"
 
 //60 FPS
 //const float MS_PER_UPDATE = 0.016;
@@ -26,13 +23,14 @@ int score = 0;
 bool isGameOver = false;
 
 std::shared_ptr<BallGameObject> ball;
-
 std::shared_ptr<Label> livesLabel;
 std::shared_ptr<Label> scoreLabel;
 std::shared_ptr<Label> gameOverLabel;
 
 //Armazena todos os objetos na cena pra atualizar todos de uma vez
 std::list<std::shared_ptr<GameObject>> gameObjectsInScene; //Ponteiros inteligentes pra evitar problemas com gerenciamento de memória
+
+enum PeggleType { BASIC, BONUS, SPAWNBALL };
 
 float getCurrentTime(){
     return SDL_GetTicks() / 1000.0f;
@@ -51,7 +49,7 @@ void update(float deltaTime){
             ball->reset();
         } else {
             isGameOver = true;
-            gameOverLabel = std::make_shared<Label>(250, 250, -1, "GAME OVER");
+            gameOverLabel = std::make_shared<Label>(400, 250, -1, "GAME OVER");
         }
     }
 }
@@ -64,21 +62,8 @@ void render(SDL_Renderer* renderer, std::shared_ptr<BallGameObject> ball){
     
     for(auto& gameObject : gameObjectsInScene){
         if (!gameObject->getIsAlive() || !gameObject->getTexture()) continue;
-                
+            
         SDL_RenderCopyExF(renderer, gameObject->getTexture(), NULL, &gameObject->renderRect, gameObject->rotation, NULL, SDL_FLIP_NONE);
-    }
-    
-    if (livesLabel && livesLabel->getTexture()) {
-        SDL_Rect rect = livesLabel->getRect();
-        SDL_RenderCopy(renderer, livesLabel->getTexture(), NULL, &rect);
-    }
-    if (scoreLabel && scoreLabel->getTexture()) {
-        SDL_Rect rect = scoreLabel->getRect();
-        SDL_RenderCopy(renderer, scoreLabel->getTexture(), NULL, &rect);
-    }
-    if (isGameOver && gameOverLabel && gameOverLabel->getTexture()){
-        SDL_Rect rect = gameOverLabel->getRect();
-        SDL_RenderCopy(renderer, gameOverLabel->getTexture(), NULL, &rect);
     }
     
     SDL_RenderPresent(renderer);
@@ -107,6 +92,27 @@ int main(){
     int pegsPerRow[] = {1, 3, 5, 7, 7, 5, 3, 1};
     int numRows = sizeof(pegsPerRow) / sizeof(pegsPerRow[0]);
 
+    auto collisionHandler = [&collisionDetection](const CircleCollider& colliderA, const CircleCollider& colliderB){
+        return collisionDetection.checkCircleCollision(colliderA, colliderB);
+    };
+
+    auto scoringHandler = [&]() {
+        score += 20;
+        scoreLabel->setValue(score);
+    };
+
+    auto multiplyHandler = [&]() {
+        score *= 1.2;
+        scoreLabel->setValue(score);
+    };
+
+    auto spawnBallHandler = [&]() {
+        std::shared_ptr<BallGameObject> newBall = std::make_shared<BallGameObject>(400, 50, 10, "ball.png");
+        gameObjectsInScene.push_back(newBall);
+        newBall->setAimDirection(rand() % 800, rand() % 800);
+        newBall->launch();
+    };
+
     for (int i = 0; i < numRows; ++i) {
         int numPegs = pegsPerRow[i];
         float rowWidth = (numPegs - 1) * horizontalSpacing;
@@ -116,26 +122,29 @@ int main(){
         for (int j = 0; j < numPegs; ++j) {
             int x = startX + j * horizontalSpacing;
 
-            std::shared_ptr<PeggleGameObject> peggle = std::make_shared<PeggleGameObject>(rand() % 3 == 0 ? BONUS : rand() % 3 == 0 ? SPAWNBALL : BASIC, gameObjectsInScene, x, y, 10, "whitePin.png");
-//            std::shared_ptr<PeggleGameObject> peggle = std::make_shared<PeggleGameObject>(SPAWNBALL, gameObjectsInScene, x, y, 10, "whitePin.png");
+            PeggleType type = static_cast<PeggleType>(rand() % 3);
+            std::shared_ptr<PeggleGameObject> peggle;
+
+            // std::shared_ptr<PeggleGameObject> peggle = std::make_shared<PeggleGameObject>(SPAWNBALL, gameObjectsInScene, x, y, 10, "whitePin.png");
+
+            switch (type) {
+                case BONUS:
+                    peggle = std::make_shared<PeggleGameObject>(gameObjectsInScene, x, y, 10, "yellowPin.png");
+                    peggle->addOnHitComponent(std::make_shared<ScoringComponent>(scoringHandler));
+                    peggle->addOnHitComponent(std::make_shared<MultiplierComponent>(multiplyHandler));
+                    break;
+                case SPAWNBALL:
+                    peggle = std::make_shared<PeggleGameObject>(gameObjectsInScene, x, y, 10, "bluePin.png");
+                    peggle->addOnHitComponent(std::make_shared<SpawnBallComponent>(spawnBallHandler));
+                    break;
+                case BASIC:
+                default:
+                    peggle = std::make_shared<PeggleGameObject>(gameObjectsInScene, x, y, 10, "whitePin.png");
+                    peggle->addOnHitComponent(std::make_shared<ScoringComponent>(scoringHandler));
+                    break;
+            }
             
-            peggle->AddDelegate([&collisionDetection](const CircleCollider& colliderA, const CircleCollider& colliderB){
-                return collisionDetection.checkCircleCollision(colliderA, colliderB);
-            });
-            peggle->setScoringDelegate([&]() {
-                score += 20;
-                scoreLabel->setValue(score);
-            });
-            peggle->setMultiplyScoreDelegate([&]() {
-                score *= 1.2;
-                scoreLabel->setValue(score);
-            });
-            peggle->setSpawnBallDelegate([&]() {
-                std::shared_ptr<BallGameObject> newBall = std::make_shared<BallGameObject>(400, 50, 10, "ball.png");
-                gameObjectsInScene.push_back(newBall);
-                newBall->setAimDirection(rand() % 800, rand() % 800);
-                newBall->launch();
-            });
+            peggle->setCollisionDelegate(collisionHandler);
             gameObjectsInScene.push_back(peggle);
         }
     }
@@ -152,39 +161,39 @@ int main(){
     int updateFrames = 0;
     
     while (!quit){
-       double current = getCurrentTime();
-       double elapsed = current - previous;
-       previous = current;
-       lag += elapsed;
-       fpsCounter += elapsed;
-       
-       while(SDL_PollEvent(&event)){
-           switch(event.type){
-               case SDL_QUIT:
-                   quit = true;
-                   break;
-               case SDL_MOUSEMOTION:
-                   if (ball->getState() == AIMING) {
-                       ball->setAimDirection(event.motion.x, event.motion.y);
-                   }
-                   break;
-               
-               case SDL_MOUSEBUTTONDOWN:
-                   if (event.button.button == SDL_BUTTON_LEFT && ball->getState() == AIMING) {
-                       ball->launch();
-                   }
-                   break;
-           }
-           
-       }
-       
-       //Usando o Game Programming Pattern Update pra manter uma taxa de frames fixa, com um time step fixo e uma renderização variável (como não passamos lag residual pra renderização, em máquinas mais lentas a renderização pode ocorrer menos frequentemente que o update, causando artefatos visuais. Como essa máquina é meio goat 🐐 (bode 🐐) a renderização sempre roda mais rápido (uns 1000fps enquanto o update roda a uma taxa fixa))
-       while (lag >= MS_PER_UPDATE){
-           updateFrames++;
-           update(MS_PER_UPDATE);
-           lag -= MS_PER_UPDATE;
-       }
-       
+        double current = getCurrentTime();
+        double elapsed = current - previous;
+        previous = current;
+        lag += elapsed;
+        fpsCounter += elapsed;
+        
+        while(SDL_PollEvent(&event)){
+            switch(event.type){
+                case SDL_QUIT:
+                    quit = true;
+                    break;
+                case SDL_MOUSEMOTION:
+                    if (ball->getState() == AIMING) {
+                        ball->setAimDirection(event.motion.x, event.motion.y);
+                    }
+                    break;
+                
+                case SDL_MOUSEBUTTONDOWN:
+                    if (event.button.button == SDL_BUTTON_LEFT && ball->getState() == AIMING) {
+                        ball->launch();
+                    }
+                    break;
+            }
+            
+        }
+        
+        //Usando o Game Programming Pattern Update pra manter uma taxa de frames fixa, com um time step fixo e uma renderização variável (como não passamos lag residual pra renderização, em máquinas mais lentas a renderização pode ocorrer menos frequentemente que o update, causando artefatos visuais. Como essa máquina é meio goat 🐐 (bode 🐐) a renderização sempre roda mais rápido (uns 1000fps enquanto o update roda a uma taxa fixa))
+        while (lag >= MS_PER_UPDATE){
+            updateFrames++;
+            update(MS_PER_UPDATE);
+            lag -= MS_PER_UPDATE;
+        }
+        
         if (fpsCounter >= 1.0f){
             std::cout << "UPDATE FPS: " << updateFrames << std::endl;
             std::cout << "RENDER FPS: " << renderFrames << std::endl;
@@ -193,10 +202,10 @@ int main(){
             renderFrames = 0;
             fpsCounter -= 1.0f;
         }
-       
-       render(renderer,ball);
+        
+        render(renderer,ball);
         renderFrames++;
-   }
+    }
     
     return 0;
 }

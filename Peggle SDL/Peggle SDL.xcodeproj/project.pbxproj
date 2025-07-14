@@ -13,6 +13,9 @@
 		8F2E68432E087ACA00FD3BBB /* whitePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F2E683D2E087ACA00FD3BBB /* whitePin.png */; };
 		8F2E68442E087ACA00FD3BBB /* yellowPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F2E683E2E087ACA00FD3BBB /* yellowPin.png */; };
 		8F2E684A2E0881A800FD3BBB /* CollisionDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F2E68482E0881A800FD3BBB /* CollisionDetection.cpp */; };
+		8F34DFC82E2494CC004D46E3 /* ScoringComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FD52A732E248DB6004702E8 /* ScoringComponent.cpp */; };
+		8F34DFC92E2494CE004D46E3 /* MultiplierComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FD52A752E248DFA004702E8 /* MultiplierComponent.cpp */; };
+		8F34DFCA2E2494D1004D46E3 /* SpawnBallComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FD52A772E248E1E004702E8 /* SpawnBallComponent.cpp */; };
 		8FA3A8DD2E11D57600A2B5EA /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FA3A8DB2E11D57600A2B5EA /* Label.cpp */; };
 		8FA3A8DF2E11DD1400A2B5EA /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */; };
 		8FA3A8E02E11DD1400A2B5EA /* SDL2_ttf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -60,6 +63,13 @@
 		8FA3A8DC2E11D57600A2B5EA /* Label.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Label.hpp; sourceTree = "<group>"; };
 		8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		8FA3A8E32E11DF1D00A2B5EA /* NewYork.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewYork.ttf; sourceTree = "<group>"; };
+		8FD52A702E248C4C004702E8 /* OnHitComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnHitComponent.h; sourceTree = "<group>"; };
+		8FD52A732E248DB6004702E8 /* ScoringComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ScoringComponent.cpp; sourceTree = "<group>"; };
+		8FD52A742E248DB6004702E8 /* ScoringComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ScoringComponent.hpp; sourceTree = "<group>"; };
+		8FD52A752E248DFA004702E8 /* MultiplierComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MultiplierComponent.cpp; sourceTree = "<group>"; };
+		8FD52A762E248DFA004702E8 /* MultiplierComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MultiplierComponent.hpp; sourceTree = "<group>"; };
+		8FD52A772E248E1E004702E8 /* SpawnBallComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpawnBallComponent.cpp; sourceTree = "<group>"; };
+		8FD52A782E248E1E004702E8 /* SpawnBallComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpawnBallComponent.hpp; sourceTree = "<group>"; };
 		8FE71D982E008A9400BC96FA /* Peggle SDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peggle SDL.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE71DA52E008A9500BC96FA /* Peggle_SDL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peggle_SDL.entitlements; sourceTree = "<group>"; };
 		8FE71DAC2E008B4D00BC96FA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
@@ -118,9 +128,24 @@
 			path = Label;
 			sourceTree = "<group>";
 		};
+		8FD52A6F2E248C17004702E8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8FD52A702E248C4C004702E8 /* OnHitComponent.h */,
+				8FD52A732E248DB6004702E8 /* ScoringComponent.cpp */,
+				8FD52A742E248DB6004702E8 /* ScoringComponent.hpp */,
+				8FD52A752E248DFA004702E8 /* MultiplierComponent.cpp */,
+				8FD52A762E248DFA004702E8 /* MultiplierComponent.hpp */,
+				8FD52A772E248E1E004702E8 /* SpawnBallComponent.cpp */,
+				8FD52A782E248E1E004702E8 /* SpawnBallComponent.hpp */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		8FE71D8F2E008A9400BC96FA = {
 			isa = PBXGroup;
 			children = (
+				8FD52A6F2E248C17004702E8 /* Components */,
 				8FA3A8DA2E11D56C00A2B5EA /* Label */,
 				8F2E68472E08819800FD3BBB /* Collision */,
 				8F2E68452E087D4200FD3BBB /* Enums */,
@@ -274,9 +299,12 @@
 				8F2E684A2E0881A800FD3BBB /* CollisionDetection.cpp in Sources */,
 				8FE71DB12E008B6500BC96FA /* main.cpp in Sources */,
 				8FE71DB52E008C8F00BC96FA /* SdlManager.cpp in Sources */,
+				8F34DFC92E2494CE004D46E3 /* MultiplierComponent.cpp in Sources */,
 				8FE71DBC2E008D2100BC96FA /* GameObject.cpp in Sources */,
 				8FE71DC22E00973100BC96FA /* BallGameObject.cpp in Sources */,
+				8F34DFC82E2494CC004D46E3 /* ScoringComponent.cpp in Sources */,
 				8FE71DC52E00973B00BC96FA /* PeggleGameObject.cpp in Sources */,
+				8F34DFCA2E2494D1004D46E3 /* SpawnBallComponent.cpp in Sources */,
 				8FA3A8DD2E11D57600A2B5EA /* Label.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

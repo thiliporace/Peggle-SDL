@@ -12,42 +12,23 @@
 
 #include "GameObject.hpp"
 #include "BallGameObject.hpp"
-#include "PeggleType.h"
-#include "CollisionDetection.hpp"
+#include "OnHitComponent.h"
 
-//Delegate pra funçao do Collision Detection
 using OnCollisionDetectionDelegate = std::function<bool(const CircleCollider& colliderA, const CircleCollider& colliderB)>;
 
-using OnHitScoringDelegate = std::function<void()>;
-
-using OnHitMultiplyScoreDelegate = std::function<void()>;
-
-using OnHitSpawnBallDelegate = std::function<void()>;
-
-class PeggleGameObject: public GameObject{
+class PeggleGameObject: public GameObject {
 private:
-    PeggleType peggleType;
-    
     std::list<std::shared_ptr<GameObject>>& gameObjectsInScene;
-    
     OnCollisionDetectionDelegate collisionDetectionDelegate;
-    
-    OnHitScoringDelegate scoringDelegate;
-    OnHitMultiplyScoreDelegate multiplyDelegate;
-    OnHitSpawnBallDelegate spawnBallDelegate;
-    
+    std::vector<std::shared_ptr<OnHitComponent>> onHitComponents;
+
 public:
-    PeggleGameObject(PeggleType type, std::list<std::shared_ptr<GameObject>>& gameObjects, float initialX, float initialY, float radius, const std::string& assetName, double rotation = 0);
+    PeggleGameObject(std::list<std::shared_ptr<GameObject>>& gameObjects, float initialX, float initialY, float radius, const std::string& assetName, double rotation = 0);
     
     void update(float deltaTime) override;
     
-    void changePeggleType(const PeggleType& newType, const std::string& newAssetName);
-    
-    void AddDelegate(OnCollisionDetectionDelegate handler);
-    
-    void setScoringDelegate(OnHitScoringDelegate handler);
-    void setMultiplyScoreDelegate(OnHitMultiplyScoreDelegate handler);
-    void setSpawnBallDelegate(OnHitSpawnBallDelegate handler);
+    void addOnHitComponent(std::shared_ptr<OnHitComponent> component);
+    void setCollisionDelegate(OnCollisionDetectionDelegate handler);
 };
 
 #endif /* PeggleGameObject_hpp */
