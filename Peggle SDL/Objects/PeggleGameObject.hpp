@@ -37,7 +37,7 @@ private:
     OnHitSpawnBallDelegate spawnBallDelegate;
     
 public:
-    PeggleGameObject(PeggleType type, std::list<std::shared_ptr<GameObject>>& gameObjects, float initialX, float initialY, float radius, const std::string& assetName, AudioManager& audioManager, double rotation = 0);
+    PeggleGameObject(PeggleType type, std::list<std::shared_ptr<GameObject>>& gameObjects, float initialX, float initialY, float radius, const std::string& assetName, double rotation = 0);
     
     void update(float deltaTime) override;
     

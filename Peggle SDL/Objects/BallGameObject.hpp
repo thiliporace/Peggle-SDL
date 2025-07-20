@@ -29,7 +29,7 @@ public:
     float velX = 0;
     float velY = 0;
     
-    BallGameObject(float initialX, float initialY, float radius, const std::string& assetName, AudioManager& audioManager, double rotation = 0);
+    BallGameObject(float initialX, float initialY, float radius, const std::string& assetName, double rotation = 0);
     
     void update(float deltaTime) override;
     

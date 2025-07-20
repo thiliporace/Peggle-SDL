@@ -21,20 +21,15 @@
 //240 FPS
 const float MS_PER_UPDATE = 0.004;
 
-int lives = 5;
+int lives = 3;
 int score = 0;
 bool isGameOver = false;
-
-int pegsHitThisTurn = 0;
-const int NUM_PEGS_EXTREME_FEVER = 5;
-bool isExtremeFeverActive = false;
 
 std::shared_ptr<BallGameObject> ball;
 
 std::shared_ptr<Label> livesLabel;
 std::shared_ptr<Label> scoreLabel;
 std::shared_ptr<Label> gameOverLabel;
-std::shared_ptr<Label> extremeFeverLabel;
 
 //Armazena todos os objetos na cena pra atualizar todos de uma vez
 std::list<std::shared_ptr<GameObject>> gameObjectsInScene; //Ponteiros inteligentes pra evitar problemas com gerenciamento de memória
@@ -54,10 +49,8 @@ void update(float deltaTime){
         
         if (lives > 0) {
             ball->reset();
-            pegsHitThisTurn = 0;
         } else {
             isGameOver = true;
-            isExtremeFeverActive = false;
             gameOverLabel = std::make_shared<Label>(250, 250, -1, "GAME OVER");
         }
     }
@@ -88,13 +81,6 @@ void render(SDL_Renderer* renderer, std::shared_ptr<BallGameObject> ball){
         SDL_RenderCopy(renderer, gameOverLabel->getTexture(), NULL, &rect);
     }
     
-    if (isExtremeFeverActive && extremeFeverLabel && extremeFeverLabel->getTexture()) {
-        if ((SDL_GetTicks() / 500) % 2 == 0) {
-            SDL_Rect rect = extremeFeverLabel->getRect();
-            SDL_RenderCopy(renderer, extremeFeverLabel->getTexture(), NULL, &rect);
-        }
-    }
-    
     SDL_RenderPresent(renderer);
 }
 
@@ -106,13 +92,10 @@ int main(){
     
     CollisionDetection collisionDetection = CollisionDetection();
     
-    AudioManager audioManager = AudioManager();
-    
-    ball = std::make_shared<BallGameObject>(400, 50, 10, "ball.png", audioManager);
+    ball = std::make_shared<BallGameObject>(400, 50, 10, "ball.png");
     
     livesLabel = std::make_shared<Label>(10, 10, lives, "Lives: ");
     scoreLabel = std::make_shared<Label>(650, 10, score, "Points: ");
-    extremeFeverLabel = std::make_shared<Label>(220, 300, -1, "EXTREME FEVER!");
     
     gameObjectsInScene.push_back(ball);
 
@@ -133,7 +116,7 @@ int main(){
         for (int j = 0; j < numPegs; ++j) {
             int x = startX + j * horizontalSpacing;
 
-            std::shared_ptr<PeggleGameObject> peggle = std::make_shared<PeggleGameObject>(rand() % 3 == 0 ? BONUS : rand() % 3 == 0 ? SPAWNBALL : BASIC, gameObjectsInScene, x, y, 10, "whitePin.png", audioManager);
+            std::shared_ptr<PeggleGameObject> peggle = std::make_shared<PeggleGameObject>(rand() % 3 == 0 ? BONUS : rand() % 3 == 0 ? SPAWNBALL : BASIC, gameObjectsInScene, x, y, 10, "whitePin.png");
 //            std::shared_ptr<PeggleGameObject> peggle = std::make_shared<PeggleGameObject>(SPAWNBALL, gameObjectsInScene, x, y, 10, "whitePin.png");
             
             peggle->AddDelegate([&collisionDetection](const CircleCollider& colliderA, const CircleCollider& colliderB){
@@ -142,36 +125,16 @@ int main(){
             peggle->setScoringDelegate([&]() {
                 score += 20;
                 scoreLabel->setValue(score);
-                audioManager.playSound("scorecounter");
-                
-                pegsHitThisTurn++;
-                if (pegsHitThisTurn == NUM_PEGS_EXTREME_FEVER) {
-                    audioManager.playSound("extremefever");
-                    isExtremeFeverActive = true;
-                }
             });
             peggle->setMultiplyScoreDelegate([&]() {
                 score *= 1.2;
                 scoreLabel->setValue(score);
-                int randomScore = rand() % 2;
-                switch (randomScore){
-                    case 0:
-                        audioManager.playSound("powerupluckyspin");
-                        break;
-                    case 1:
-                        audioManager.playSound("powerupspooky");
-                        break;
-                    case 2:
-                        audioManager.playSound("powerupzen");
-                        break;
-                }
             });
             peggle->setSpawnBallDelegate([&]() {
-                std::shared_ptr<BallGameObject> newBall = std::make_shared<BallGameObject>(400, 50, 10, "ball.png", audioManager);
+                std::shared_ptr<BallGameObject> newBall = std::make_shared<BallGameObject>(400, 50, 10, "ball.png");
                 gameObjectsInScene.push_back(newBall);
                 newBall->setAimDirection(rand() % 800, rand() % 800);
                 newBall->launch();
-                audioManager.playSound("extraball");
             });
             gameObjectsInScene.push_back(peggle);
         }
@@ -209,7 +172,6 @@ int main(){
                case SDL_MOUSEBUTTONDOWN:
                    if (event.button.button == SDL_BUTTON_LEFT && ball->getState() == AIMING) {
                        ball->launch();
-                       audioManager.playSound("cannonshot");
                    }
                    break;
            }
