@@ -47,6 +47,8 @@ bool AudioManager::init() {
         return false;
     }
     
+    Mix_AllocateChannels(32);
+    
     return true;
 }
 
@@ -61,10 +63,38 @@ bool AudioManager::loadSound(const std::string& id, const std::string& path) {
     return true;
 }
 
-void AudioManager::playSound(const std::string& id) {
-    if (soundMap.find(id) != soundMap.end()) {
-        if (Mix_PlayChannel(-1, soundMap[id], 0) == -1) {
-            std::cerr << "Falha ao tocar o som '" << id << "': " << Mix_GetError() << std::endl;
+void AudioManager::queueSound(const std::string& id) {
+    // Verifica se a fila esta cheia
+    if ((tail + 1) % MAX_PENDING_SOUNDS == head) {
+        // Fila cheia, retorna
+        return;
+    }
+
+    // Adiciona o pedido de som ao final da fila
+    pendingSounds[tail].id = id;
+    
+    // Avança o ponteiro tail
+    tail = (tail + 1) % MAX_PENDING_SOUNDS;
+}
+
+void AudioManager::update() {
+    // Se não há pedidos pendentes retorna
+    if (head == tail) {
+        return;
+    }
+
+    // Pega o pedido mais antigo da fila
+    SoundRequest& request = pendingSounds[head];
+
+    // Verifica se o som existe no mapa
+    if (soundMap.count(request.id)) {
+        // Tenta tocar o som em algum canal livre
+        if (Mix_PlayChannel(-1, soundMap[request.id], 0) != -1) {
+            // Avança o ponteiro head
+            head = (head + 1) % MAX_PENDING_SOUNDS;
         }
+    } else {
+        // Se o som não foi encontrado remove o pedido da fila
+        head = (head + 1) % MAX_PENDING_SOUNDS;
     }
 }

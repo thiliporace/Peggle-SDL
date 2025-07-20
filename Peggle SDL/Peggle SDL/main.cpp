@@ -142,11 +142,12 @@ int main(){
             peggle->setScoringDelegate([&]() {
                 score += 20;
                 scoreLabel->setValue(score);
-                audioManager.playSound("scorecounter");
+                audioManager.queueSound("scorecounter");
                 
                 pegsHitThisTurn++;
                 if (pegsHitThisTurn == NUM_PEGS_EXTREME_FEVER) {
-                    audioManager.playSound("extremefever");
+                    if (isExtremeFeverActive) return;
+                    audioManager.queueSound("extremefever");
                     isExtremeFeverActive = true;
                 }
             });
@@ -156,13 +157,13 @@ int main(){
                 int randomScore = rand() % 2;
                 switch (randomScore){
                     case 0:
-                        audioManager.playSound("powerupluckyspin");
+                        audioManager.queueSound("powerupluckyspin");
                         break;
                     case 1:
-                        audioManager.playSound("powerupspooky");
+                        audioManager.queueSound("powerupspooky");
                         break;
                     case 2:
-                        audioManager.playSound("powerupzen");
+                        audioManager.queueSound("powerupzen");
                         break;
                 }
             });
@@ -171,7 +172,7 @@ int main(){
                 gameObjectsInScene.push_back(newBall);
                 newBall->setAimDirection(rand() % 800, rand() % 800);
                 newBall->launch();
-                audioManager.playSound("extraball");
+                audioManager.queueSound("extraball");
             });
             gameObjectsInScene.push_back(peggle);
         }
@@ -209,12 +210,14 @@ int main(){
                case SDL_MOUSEBUTTONDOWN:
                    if (event.button.button == SDL_BUTTON_LEFT && ball->getState() == AIMING) {
                        ball->launch();
-                       audioManager.playSound("cannonshot");
+                       audioManager.queueSound("cannonshot");
                    }
                    break;
            }
            
        }
+        
+        audioManager.update();
        
        //Usando o Game Programming Pattern Update pra manter uma taxa de frames fixa, com um time step fixo e uma renderização variável (como não passamos lag residual pra renderização, em máquinas mais lentas a renderização pode ocorrer menos frequentemente que o update, causando artefatos visuais. Como essa máquina é meio goat 🐐 (bode 🐐) a renderização sempre roda mais rápido (uns 1000fps enquanto o update roda a uma taxa fixa))
        while (lag >= MS_PER_UPDATE){

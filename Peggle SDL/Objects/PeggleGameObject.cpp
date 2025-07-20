@@ -20,7 +20,7 @@ void PeggleGameObject::update(float deltaTime){
         if (ball && ball->getState() != AIMING) {
             if (collisionDetectionDelegate && collisionDetectionDelegate(this->collider, ball->collider)) {
                 setIsAlive(false);
-                audioManager.playSound("peghit");
+                audioManager.queueSound("peghit");
                 
                 switch (peggleType){
                     case BASIC:
