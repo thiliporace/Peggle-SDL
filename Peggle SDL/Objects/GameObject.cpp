@@ -7,6 +7,7 @@
 
 #include "GameObject.hpp"
 #include "SdlManager.hpp"
+#include "AssetManager.hpp"
 
 #include <stdio.h>
 #include <iostream>
@@ -16,23 +17,12 @@
 using namespace std;
 
 GameObject::GameObject(float initialX, float initialY, float radius, const std::string& assetName, double rotation) : isAlive(true), rotation(rotation) {
+    
     SdlManager* sdlManager = SdlManager::getInstance();
-        
-    spriteTexture = nullptr;
     
-    sprite = IMG_Load(assetName.c_str());
+    AssetManager* assetManager = AssetManager::getInstance(sdlManager->getRenderer());
     
-    if (!sprite){
-        cout << "Error Surface: " << SDL_GetError() << endl;
-        return;
-    }
-    
-    spriteTexture = SDL_CreateTextureFromSurface(sdlManager->getRenderer(), sprite);
-    
-    if (!spriteTexture){
-        cout << "Error Texture: " << SDL_GetError() << endl;
-        return;
-    }
+    spriteTexture = assetManager->getAsset(assetName);
     
     SDL_FreeSurface(sprite);
 

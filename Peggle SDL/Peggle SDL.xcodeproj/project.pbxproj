@@ -13,6 +13,7 @@
 		8F2E68432E087ACA00FD3BBB /* whitePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F2E683D2E087ACA00FD3BBB /* whitePin.png */; };
 		8F2E68442E087ACA00FD3BBB /* yellowPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F2E683E2E087ACA00FD3BBB /* yellowPin.png */; };
 		8F2E684A2E0881A800FD3BBB /* CollisionDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F2E68482E0881A800FD3BBB /* CollisionDetection.cpp */; };
+		8F789E8E2E2D8B1E007AFC97 /* AssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F789E8C2E2D8B1E007AFC97 /* AssetManager.cpp */; };
 		8FA3A8DD2E11D57600A2B5EA /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FA3A8DB2E11D57600A2B5EA /* Label.cpp */; };
 		8FA3A8DF2E11DD1400A2B5EA /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */; };
 		8FA3A8E02E11DD1400A2B5EA /* SDL2_ttf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -55,6 +56,8 @@
 		8F2E68462E087DA300FD3BBB /* PeggleType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeggleType.h; sourceTree = "<group>"; };
 		8F2E68482E0881A800FD3BBB /* CollisionDetection.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionDetection.cpp; sourceTree = "<group>"; };
 		8F2E68492E0881A800FD3BBB /* CollisionDetection.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CollisionDetection.hpp; sourceTree = "<group>"; };
+		8F789E8C2E2D8B1E007AFC97 /* AssetManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AssetManager.cpp; sourceTree = "<group>"; };
+		8F789E8D2E2D8B1E007AFC97 /* AssetManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AssetManager.hpp; sourceTree = "<group>"; };
 		8FA3A8D92E11CC0B00A2B5EA /* BallState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BallState.h; sourceTree = "<group>"; };
 		8FA3A8DB2E11D57600A2B5EA /* Label.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Label.cpp; sourceTree = "<group>"; };
 		8FA3A8DC2E11D57600A2B5EA /* Label.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Label.hpp; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 			children = (
 				8FE71DB32E008C8F00BC96FA /* SdlManager.cpp */,
 				8FE71DB42E008C8F00BC96FA /* SdlManager.hpp */,
+				8F789E8C2E2D8B1E007AFC97 /* AssetManager.cpp */,
+				8F789E8D2E2D8B1E007AFC97 /* AssetManager.hpp */,
 			);
 			path = Singletons;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				8FE71DB12E008B6500BC96FA /* main.cpp in Sources */,
 				8FE71DB52E008C8F00BC96FA /* SdlManager.cpp in Sources */,
 				8FE71DBC2E008D2100BC96FA /* GameObject.cpp in Sources */,
+				8F789E8E2E2D8B1E007AFC97 /* AssetManager.cpp in Sources */,
 				8FE71DC22E00973100BC96FA /* BallGameObject.cpp in Sources */,
 				8FE71DC52E00973B00BC96FA /* PeggleGameObject.cpp in Sources */,
 				8FA3A8DD2E11D57600A2B5EA /* Label.cpp in Sources */,
