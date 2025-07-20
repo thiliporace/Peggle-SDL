@@ -15,7 +15,7 @@
 
 using namespace std;
 
-GameObject::GameObject(float initialX, float initialY, float radius, const std::string& assetName, double rotation) : isAlive(true), rotation(rotation) {
+GameObject::GameObject(float initialX, float initialY, float radius, const std::string& assetName, AudioManager& audioManager, double rotation) : isAlive(true), rotation(rotation), audioManager(audioManager) {
     SdlManager* sdlManager = SdlManager::getInstance();
         
     spriteTexture = nullptr;

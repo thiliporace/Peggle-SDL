@@ -16,7 +16,7 @@ const float GRAVITY = 980.0f;
 const int TRAJECTORY_SIM_STEPS = 60;
 const float TRAJECTORY_TIME_STEP = 0.016f;
 
-BallGameObject::BallGameObject(float initialX, float initialY, float radius, const std::string& assetName, double rotation): GameObject(initialX, initialY, radius, assetName, rotation) {
+BallGameObject::BallGameObject(float initialX, float initialY, float radius, const std::string& assetName, AudioManager& audioManager, double rotation): GameObject(initialX, initialY, radius, assetName, audioManager, rotation) {
     currentState = AIMING;
     velX = 0;
     velY = 0;
@@ -48,6 +48,7 @@ void BallGameObject::update(float deltaTime){
         }
         
         if (collider.y + collider.radius > 600) {
+            //audioManager.playSound("aah");
             hasFallen = true;
         }
         

@@ -14,6 +14,7 @@
 #include <SDL2/SDL.h>
 
 #include "CircleCollider.h"
+#include "AudioManager.hpp"
 
 class GameObject {
 private:
@@ -25,7 +26,9 @@ private:
 
 protected:
     bool isAlive;
-
+    
+    AudioManager& audioManager;
+    
 public:
     CircleCollider collider;
     
@@ -33,7 +36,7 @@ public:
     
     double rotation;
     
-    GameObject(float initialX, float initialY, float radius, const std::string& assetName, double rotation = 0);
+    GameObject(float initialX, float initialY, float radius, const std::string& assetName, AudioManager& audioManager, double rotation = 0);
     
     void changeAsset(const std::string& assetName);
     

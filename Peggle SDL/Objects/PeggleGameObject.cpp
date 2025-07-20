@@ -7,7 +7,7 @@
 
 #include "PeggleGameObject.hpp"
 
-PeggleGameObject::PeggleGameObject(PeggleType type, std::list<std::shared_ptr<GameObject>>& gameObjects, float initialX, float initialY, float radius, const std::string& assetName, double rotation): GameObject(initialX, initialY, radius, assetName, rotation), peggleType(type), gameObjectsInScene(gameObjects){
+PeggleGameObject::PeggleGameObject(PeggleType type, std::list<std::shared_ptr<GameObject>>& gameObjects, float initialX, float initialY, float radius, const std::string& assetName, AudioManager& audioManager, double rotation): GameObject(initialX, initialY, radius, assetName, audioManager, rotation), peggleType(type), gameObjectsInScene(gameObjects){
     changePeggleType(type, type == BASIC ? "whitePin.png" : type == BONUS ? "yellowPin.png" : "bluePin.png");
 }
 
@@ -20,6 +20,7 @@ void PeggleGameObject::update(float deltaTime){
         if (ball && ball->getState() != AIMING) {
             if (collisionDetectionDelegate && collisionDetectionDelegate(this->collider, ball->collider)) {
                 setIsAlive(false);
+                audioManager.playSound("peghit");
                 
                 switch (peggleType){
                     case BASIC:
