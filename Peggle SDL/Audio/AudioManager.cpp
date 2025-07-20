@@ -47,6 +47,8 @@ bool AudioManager::init() {
         return false;
     }
     
+    Mix_AllocateChannels(32);
+    
     return true;
 }
 
