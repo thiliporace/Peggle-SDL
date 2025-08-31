@@ -27,10 +27,10 @@
 		8F789EAF2E2D9523007AFC97 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F789EAE2E2D9523007AFC97 /* SDL2_mixer.framework */; };
 		8F789EB02E2D9523007AFC97 /* SDL2_mixer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8F789EAE2E2D9523007AFC97 /* SDL2_mixer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8F789EB22E2D9877007AFC97 /* extremefever.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F789EB12E2D9877007AFC97 /* extremefever.mp3 */; };
+		8F980E4E2E64CDC100D0B709 /* NewYork.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F980E4D2E64CDC100D0B709 /* NewYork.ttf */; };
 		8FA3A8DD2E11D57600A2B5EA /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FA3A8DB2E11D57600A2B5EA /* Label.cpp */; };
 		8FA3A8DF2E11DD1400A2B5EA /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */; };
 		8FA3A8E02E11DD1400A2B5EA /* SDL2_ttf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8FA3A8E42E11DF2B00A2B5EA /* NewYork.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FA3A8E32E11DF1D00A2B5EA /* NewYork.ttf */; };
 		8FE71DAD2E008B4D00BC96FA /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DAC2E008B4D00BC96FA /* SDL2.framework */; };
 		8FE71DAE2E008B4D00BC96FA /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE71DAC2E008B4D00BC96FA /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8FE71DB12E008B6500BC96FA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FE71DB02E008B6500BC96FA /* main.cpp */; };
@@ -84,11 +84,11 @@
 		8F789EAC2E2D946D007AFC97 /* AudioManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AudioManager.hpp; sourceTree = "<group>"; };
 		8F789EAE2E2D9523007AFC97 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		8F789EB12E2D9877007AFC97 /* extremefever.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = extremefever.mp3; path = ../../../../../../Downloads/extremefever.mp3; sourceTree = "<group>"; };
+		8F980E4D2E64CDC100D0B709 /* NewYork.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewYork.ttf; sourceTree = "<group>"; };
 		8FA3A8D92E11CC0B00A2B5EA /* BallState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BallState.h; sourceTree = "<group>"; };
 		8FA3A8DB2E11D57600A2B5EA /* Label.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Label.cpp; sourceTree = "<group>"; };
 		8FA3A8DC2E11D57600A2B5EA /* Label.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Label.hpp; sourceTree = "<group>"; };
 		8FA3A8DE2E11DD1400A2B5EA /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
-		8FA3A8E32E11DF1D00A2B5EA /* NewYork.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewYork.ttf; sourceTree = "<group>"; };
 		8FE71D982E008A9400BC96FA /* Peggle SDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peggle SDL.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE71DA52E008A9500BC96FA /* Peggle_SDL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peggle_SDL.entitlements; sourceTree = "<group>"; };
 		8FE71DAC2E008B4D00BC96FA /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
@@ -244,8 +244,8 @@
 		8FE71DBD2E0096A500BC96FA /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				8F980E4D2E64CDC100D0B709 /* NewYork.ttf */,
 				8F789E8F2E2D93BD007AFC97 /* Sounds */,
-				8FA3A8E32E11DF1D00A2B5EA /* NewYork.ttf */,
 				8FE71DBE2E0096CF00BC96FA /* ball.png */,
 				8F2E683C2E087ACA00FD3BBB /* bluePin.png */,
 				8F2E683A2E087ACA00FD3BBB /* greenPin.png */,
@@ -314,7 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FA3A8E42E11DF2B00A2B5EA /* NewYork.ttf in Resources */,
+				8F980E4E2E64CDC100D0B709 /* NewYork.ttf in Resources */,
 				8F2E68442E087ACA00FD3BBB /* yellowPin.png in Resources */,
 				8F789EA02E2D93D5007AFC97 /* applause.mp3 in Resources */,
 				8F789EA62E2D93D5007AFC97 /* peghit.mp3 in Resources */,
